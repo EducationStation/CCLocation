@@ -1,7 +1,7 @@
 
-animicon = "../img/arrowsmallerorange.png";
-filmicon = "../img/arrowsmallerblue.png";
-youtubeicon = "../img/arrowsmallerred.png";
+animicon = "/img/arrowsmallerorange.png";
+filmicon = "/img/arrowsmallerblue.png";
+youtubeicon = "/img/arrowsmallerred.png";
 
 const CONFIGURATION = {
     "locations": [
