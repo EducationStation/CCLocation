@@ -56,7 +56,7 @@ function LocatorPlus(configuration) {
   const image =
   "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
   var CCicon = {
-    url: "/img/CClogo.png", // url
+    url: "img/CClogo.png", // url
     scaledSize: new google.maps.Size(79/2.5, 100/2.5), // scaled size
     origin: new google.maps.Point(0,0), // origin
     anchor: new google.maps.Point(0, 0) // anchor
