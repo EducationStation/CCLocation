@@ -1,4 +1,10 @@
 'use strict';
+function sendvariable(location,camp)
+{
+  var choice = [location,camp];
+  window.parent.postMessage(choice,"*");
+}
+
 function LocatorPlus(configuration) {
   const locator = this;
 
