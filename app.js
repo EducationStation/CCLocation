@@ -1,7 +1,9 @@
 'use strict';
-function sendvariable()
+function sendvariable(location,camp)
 {
-  window.parent.postMessage("hello","*");
+  console.log(location + " " + camp);
+  var choice = [location,camp];
+  window.parent.postMessage(choice,"*");
 }
 
 function LocatorPlus(configuration) {
