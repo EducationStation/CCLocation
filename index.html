@@ -36,7 +36,7 @@
             <div class="distance">{{travelDistanceText}}</div>
           {{/if}}
           {{#each camps}}
-              <a class="select-camp" href={{link}}>
+              <a class="select-camp" onclick="sendvariable()">
                 <h2 class="campname">{{camp}}</h2>
                 <h2 class="campdates">{{days}}</h2>
                 <h2 class="campprice">{{price}}</h2>
