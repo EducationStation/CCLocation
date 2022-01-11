@@ -149,6 +149,7 @@ body {
   animation: expandbox;
   animation-duration: .5s;
   animation-fill-mode: forwards;
+  padding-bottom: 30px;
 }
 
 #locations-panel-list .select-location {
@@ -169,6 +170,7 @@ body {
   display: flex;
   justify-content: space-between;
   background-size: 20px;
+  height: 20px;
 }
 #locations-panel-list .select-camp.selected:hover {
   background-color: #43caff2d;
@@ -233,7 +235,38 @@ body {
 #location-results-list {
   list-style-type: none;
   margin: 0;
-  padding: 0;
+}
+
+@media only screen and (max-width: 500px) {
+  #locations-panel-list .select-camp.selected  {
+    padding-right: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+  #location-results-list {
+    padding-inline-start: 0px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  #locations-panel-list .select-camp.selected  {
+    font-size: 12px;
+    padding-right: 20px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  #locations-panel-list .select-camp.selected  {
+    flex-flow: column;
+    font-size: 14px;
+    line-height: 20px;
+    padding-right: 20px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    justify-content: space-around;
+  }
 }
 
 @keyframes expandbox {
