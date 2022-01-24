@@ -1,6 +1,8 @@
 'use strict';
+var selectedLocation = false;
 function sendvariable(location,camp)
 {
+  selectedLocation = true;
   console.log(location + " " + camp);
   var choice = [location,camp];
   window.parent.postMessage(choice,"*");
@@ -29,7 +31,7 @@ function LocatorPlus(configuration) {
 
   // Initialize the map -------------------------------------------------------
   locator.map = new google.maps.Map(mapEl, configuration.mapOptions);
-
+  
   // Store selection.
   const selectResultItem = function(locationIdx, panToMarker, scrollToResult) {
     locator.selectedLocationIdx = locationIdx;
@@ -41,13 +43,36 @@ function LocatorPlus(configuration) {
           ChildLocationElem.classList.remove('selected');
         }
       }
-      if (getResultIndex(locationElem) === locator.selectedLocationIdx) {
-        locationElem.classList.add('selected');
-        for (let ChildLocationElem of locationElem.children) {
-          if(ChildLocationElem.classList.contains("select-camp"))
-          {
-            ChildLocationElem.classList.add('selected');
+      if (getResultIndex(locationElem) === locator.selectedLocationIdx) 
+      {
+        if(locationElem.classList.contains("peng") && selectedLocation == false)
+        {
+          for (let locationElem of resultsContainerEl.children) {
+            locationElem.classList.remove('peng');
+            locationElem.classList.remove('selected');
+            for (let ChildLocationElem of locationElem.children) 
+            {
+              if(ChildLocationElem.classList.contains("select-camp"))
+              {
+                ChildLocationElem.classList.remove('selected');
+                ChildLocationElem.classList.remove('peng');
+              }
+            }
           }
+          
+        }
+        else
+        {
+          locationElem.classList.add('peng');
+          locationElem.classList.add('selected');
+          for (let ChildLocationElem of locationElem.children) 
+          {
+            if(ChildLocationElem.classList.contains("select-camp"))
+            {
+                ChildLocationElem.classList.add('selected');
+            }
+          }
+          selectedLocation = false;
         }
         if (scrollToResult) {
           panelEl.scrollTop = locationElem.offsetTop;
@@ -56,6 +81,10 @@ function LocatorPlus(configuration) {
     }
     if (panToMarker && (locationIdx != null)) {
       locator.map.panTo(locator.locations[locationIdx].coords);
+      if ($(window).width() > 876) {
+        locator.map.panBy(-300,0);    
+     }
+    
     }
   };
 
@@ -75,8 +104,37 @@ function LocatorPlus(configuration) {
       title: location.title,
       icon: CCicon
     });
+
+    const contentString =
+    '<div id="content">' +
+    '<div id="siteNotice">' +
+    "</div>" +
+    `<h1 id="firstHeading" class="firstHeading">${location.title + ":"} ${location.title2}</h1>` +
+    '<div id="bodyContent">' +
+    "<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large " +
+    "sandstone rock formation in the southern part of the " +
+    "Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) " +
+    "south west of the nearest large town, Alice Springs; 450&#160;km " +
+    "(280&#160;mi) by road. Kata Tjuta and Uluru are the two major " +
+    "features of the Uluru - Kata Tjuta National Park. Uluru is " +
+    "sacred to the Pitjantjatjara and Yankunytjatjara, the " +
+    "Aboriginal people of the area. It has many springs, waterholes, " +
+    "rock caves and ancient paintings. Uluru is listed as a World " +
+    "Heritage Site.</p>" +
+    "</div>" +
+    "</div>";
+
     marker.addListener('click', function() {
       selectResultItem(index, false, true);
+        const infowindow = new google.maps.InfoWindow({
+          content: contentString,
+        });
+      infowindow.open({
+        anchor: marker,
+        map,
+        shouldFocus: false,
+      });
+      //open box
     });
     return marker;
   });
@@ -90,10 +148,16 @@ function LocatorPlus(configuration) {
       bounds.extend(markers[i].getPosition());
     }
     locator.map.fitBounds(bounds);
+    if ($(window).width() > 876) {
+      locator.map.panBy(-300,0);    
+   }
+  
   };
   if (locator.locations.length) {
     locator.updateBounds();
   }
+
+
 
   // Get the distance of a store location to the user's location,
   // used in sorting the list.
@@ -186,7 +250,7 @@ function initializeSearchInput(locator) {
       title: 'My location',
       icon: {
         path: google.maps.SymbolPath.CIRCLE,
-        scale: 12,
+        scale: 15,
         fillColor: '#3367D6',
         fillOpacity: 0.5,
         strokeOpacity: 0,
