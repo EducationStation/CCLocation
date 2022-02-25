@@ -109,7 +109,9 @@ function LocatorPlus(configuration) {
     '<div id="content">' +
     '<div id="siteNotice">' +
     "</div>" +
-    `<div id="photopin"> <img class="locaphoto" src=${location.img} alt="Cinque Terre" width="200" height="150"></img></div>` +
+    '<div id="photopin">'+
+    `<img class="locaphoto" src=${location.img} alt="Location image" width="200" height="150"></img>` +
+    '</div>'+
     `<h1 id="firstHeading" class="firstHeading">${location.title}</h1>` +
     '<div id="bodyContent">' +
     "<p><b>Available Camps:</b></p>" +
