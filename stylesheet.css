@@ -42,6 +42,8 @@ body {
   position: relative;
   font-family: Arial, Helvetica, sans-serif;
   box-sizing: border-box;
+  display: flex;
+  justify-content: center;
 }
 
 #map-container button {
@@ -296,16 +298,28 @@ body {
     padding-bottom: 30px;
     font-size: 14px;
   }
-  #location-results-list {
-    padding-inline-start: 0px;
-    padding-right: 0em;
-    padding-left: 1em;
-  }
   #locations-panel {
     padding-right: 0px;
     outline-width: 0px;
     border-width: 0px;
     border-radius: 0px;
+  }
+  #map-container
+  {
+    display: flex;
+    justify-content: center;
+  }
+  #locations-panel-list .search-input {
+    margin-top: 0.8em;
+    position: relative;
+  }
+  #locations-panel-list h1.search-title{
+    font-size: small;
+  }
+  #results
+  {
+    display: flex;
+    justify-content: center;
   }
 }
 
@@ -319,9 +333,6 @@ body {
   #locations-panel-list .location-result h2.name {
     font-size: .65em;
   }
-}
-
-@media only screen and (max-width: 400px) {
   #locations-panel-list .select-camp.selected  {
     flex-flow: column;
     font-size: 14px;
