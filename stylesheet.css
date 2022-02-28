@@ -89,7 +89,7 @@ body {
 @media only screen and (max-width: 876px) {
   #map {
     left: 0;
-    bottom: 50%;
+    bottom: 50vh;
   }
 
   #locations-panel {
