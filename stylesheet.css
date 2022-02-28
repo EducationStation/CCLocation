@@ -93,7 +93,7 @@ body {
   }
 
   #locations-panel {
-    top: 50%;
+    top: 50vh;
     right: 0;
     left: 0;
     width: unset;
