@@ -87,13 +87,19 @@ body {
 }
 
 @media only screen and (max-width: 876px) {
+  #map-container
+  {
+    display: flex;
+    height: 100%;
+  }
+  
   #map {
     left: 0;
-    bottom: 50vh;
+    height: 400px;
   }
 
   #locations-panel {
-    top: 50vh;
+    top: 400px;
     right: 0;
     left: 0;
     width: unset;
