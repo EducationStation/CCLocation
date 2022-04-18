@@ -323,6 +323,17 @@ body {
   }
 }
 
+#fulltext
+{
+  font-family: HothouseBold;
+  font-style: normal;
+  position: absolute;
+  color: #e92222;
+  font-size: 12pt;
+  right: 20px;
+  top: 32px;
+}
+
 @media only screen and (max-width: 400px) {
   #locations-panel-list .select-camp.selected  {
     font-size: 12px;
